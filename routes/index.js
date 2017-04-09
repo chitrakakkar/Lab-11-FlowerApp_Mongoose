@@ -125,4 +125,28 @@ router.post('/addDate', function (req,res,next)
 
 });
 
+router.post('/delete', function (req, res,next)
+{
+    var bird_to_delete_id = req.body._id;
+    var bird_to_delete_name= req.body.name;
+    Bird.findOne({_id:bird_to_delete_id}, function(err, bird)
+    {
+        if(err)
+        {
+            return next(err)}
+        if(!bird)
+        {
+          return next(new Error('No bird found with name ' + bird_to_delete_name) )
+        }
+        Bird.remove({_id:bird_to_delete_id}, function (err)
+        {
+            if(err)
+            {
+                return next(err)
+            }
+            res.redirect('/')
+        })
+    });
+});
+
 module.exports = router;
