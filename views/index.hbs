@@ -1,4 +1,4 @@
-<h1>Bird Records</h1>
+<h1><u>Bird Records</u></h1>
 
 <div class="addNewSighting">
     <h3>Add new bird</h3>
@@ -27,9 +27,7 @@
 
 <hr>
 
-
-
-<<div class="birdsSeen">
+<div class="birdsSeen">
 
     <h3>All sightings</h3>
 
@@ -64,14 +62,17 @@
             <input name="name" type="hidden" value="{{this.name}}">
             <input name="add" type="submit" value="Add new date">
         </form>
-        </div>
-        <form action="/delete" method="post">
+        <form action="/deleteBird" method="post">
             <input name="_id" type="hidden" value="{{this._id}}">
             <input name="name" type="hidden" value="{{this.name}}">
-            <input name="delete" type="submit" value="delete bird">
+            <input name="delete" type="submit" value="delete">
+        </form>
+        <form action="/updateBird" method="post">
+            <input name="_id" type="hidden" value="{{this._id}}">
+            <input name="name" type="hidden" value="{{this.name}}">
+            <input name="delete" type="submit" value="update">
         </form>
         <hr>
-
     {{else}}
         <p>No bird records in the database</p>
     {{/each}}

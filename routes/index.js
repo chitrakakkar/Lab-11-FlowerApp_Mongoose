@@ -125,7 +125,7 @@ router.post('/addDate', function (req,res,next)
 
 });
 
-router.post('/delete', function (req, res,next)
+router.post('/deleteBird', function (req, res,next)
 {
     var bird_to_delete_id = req.body._id;
     var bird_to_delete_name= req.body.name;
@@ -140,13 +140,57 @@ router.post('/delete', function (req, res,next)
         }
         Bird.remove({_id:bird_to_delete_id}, function (err)
         {
-            if(err)
-            {
+            if(err) {
                 return next(err)
             }
             res.redirect('/')
         })
     });
+});
+
+router.post('/updateBird', function (req, res,next)
+{
+    var bird_to_update_id= req.body._id;
+    var bird_to_update_name=req.body.name;
+
+    Bird.findOne({_id:bird_to_update_id}, function (err, birdToBeUpdated)
+    {
+
+        console.log("I am the bird data",JSON.stringify(birdToBeUpdated));
+        if(err)
+        {
+            return next(err)
+        }
+        if(!birdToBeUpdated)
+        {
+            return next(new Error('No bird found with name ' + bird_to_update_name))
+        }
+        console.log("I am " , birdToBeUpdated.name);
+        res.render('updateBirds',{bird:birdToBeUpdated});
+
+    });
+});
+
+router.post('/UpdateAndSave', function (req,res,next)
+{
+    var query = { 'name' : req.body.name };
+    var update ={
+        name:req.body.name,
+        description: req.body.description,
+        dateSeen:req.body.datesSeen,
+        threatened:req.body.threatened,
+        averageEggsLaid:req.body.averageEggsLaid,
+        nestLocation:req.body.nestLocation,
+        nestMaterials:req.body.nestMaterials
+    };
+    Bird.findOneAndUpdate(query,update, function (err, birToBeUpdated)
+    {
+        if (err) {
+            return next(new Error('Unable to update bird named: ' + birToBeUpdated.name));
+        }
+        res.redirect('/')
+
+    })
 });
 
 module.exports = router;

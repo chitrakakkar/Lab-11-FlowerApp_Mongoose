@@ -1,8 +1,18 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+  background-color:mediumslateblue;
 }
 
 a {
   color: #00B7FF;
 }
+
+h1{
+    color: yellow;
+    text-decoration-color: firebrick;
+    font-family: "Al Bayan";
+    text-align: center;
+}
+

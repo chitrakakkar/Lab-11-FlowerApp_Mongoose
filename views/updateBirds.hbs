@@ -1,0 +1,25 @@
+<h1><u>Update {{bird.name}}</u></h1>
+
+<div class="UpdatingBird">
+    <h3>Update info for {{bird.name}} and click the Update Button</h3>
+
+    <form action="/UpdateAndSave" method="POST">
+        <input name="id" value="{{bird._id}}" hidden>
+        Name: <input name="name" type="text" value="{{bird.name}}">
+        <br>
+        Description: <input name="description" type="text" value="{{bird.description}}">
+        <br>
+        Average Eggs Laid: <input name="averageEggsLaid" type="number" min="1" max="50" value="{{bird.averageEggsLaid}}">
+        <br>
+        Threatened? <input name="threatened" type="checkbox" value="{{bird.threatened}}">
+        <br>
+        Nest location: <input name="nestLocation" type="text" value="{{bird.nestLocation}}">
+        <br>
+        Nest materials: <input name="nestMaterials" type="text" value="{{bird.nestMaterials}}">
+        <br>
+        Date seen: <input name="dateSeen" type="date">
+        <br>
+        <input name="Update" type="submit" value="Update">
+        <br>
+    </form>
+</div>
