@@ -150,6 +150,7 @@ router.post('/deleteBird', function (req, res,next)
 
 router.post('/updateBird', function (req, res,next)
 {
+
     var bird_to_update_id= req.body._id;
     var bird_to_update_name=req.body.name;
 
@@ -180,8 +181,9 @@ router.post('/UpdateAndSave', function (req,res,next)
         dateSeen:req.body.datesSeen,
         threatened:req.body.threatened,
         averageEggsLaid:req.body.averageEggsLaid,
-        nestLocation:req.body.nestLocation,
-        nestMaterials:req.body.nestMaterials
+        nest:{location:req.body.nestLocation,
+        materials:req.body.nestMaterials
+    }
     };
     Bird.findOneAndUpdate(query,update, function (err, birToBeUpdated)
     {
