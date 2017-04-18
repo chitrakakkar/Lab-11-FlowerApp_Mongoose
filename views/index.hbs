@@ -1,5 +1,5 @@
 <h1><u>Bird Records</u></h1>
-
+<!-- adding a new bird form!-->
 <div class="addNewSighting">
     <h3>Add new bird</h3>
 
@@ -26,7 +26,7 @@
 
 
 <hr>
-
+<!-- birds is an array and dates seen is an array!-->
 <div class="birdsSeen">
 
     <h3>All sightings</h3>
@@ -51,22 +51,26 @@
             {{/each}}
         </ul>
         <P>Add new date seen</P>
+        <!-- error message display-->
         <div class="messages">
             {{#each messages.error}}
                 <p class="error_msg">{{this}}</p>
             {{/each}}
         </div>
+        <!-- adding new date for a bird form!-->
         <form action="/addDate" method="POST">
             <input name="dateSeen" type="date">
             <input name="_id" type="hidden" value="{{this._id}}">
             <input name="name" type="hidden" value="{{this.name}}">
             <input name="add" type="submit" value="Add new date">
         </form>
+        <!-- deleteing a bird form!-->
         <form action="/deleteBird" method="post">
             <input name="_id" type="hidden" value="{{this._id}}">
             <input name="name" type="hidden" value="{{this.name}}">
             <input name="delete" type="submit" value="delete">
         </form>
+        <!-- update a bird form;!-->
         <form action="/updateBird" method="post">
             <input name="_id" type="hidden" value="{{this._id}}">
             <input name="name" type="hidden" value="{{this.name}}">

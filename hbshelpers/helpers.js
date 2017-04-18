@@ -1,3 +1,4 @@
+// a helper to format the date passed to it;
 var moment=require('moment');
 
 function dateFormat(date)
@@ -6,7 +7,7 @@ function dateFormat(date)
     //identify the timezone in the string
     return m.parseZone().format("dddd, MMMM do YYYY","h:mm a")
 }
-
+//creating objects;
 var helpers=
 {
     dateFormatter: dateFormat

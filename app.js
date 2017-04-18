@@ -18,7 +18,7 @@ var hbshelpers = require('./hbshelpers/helpers');
 var mongo_pw = process.env.MONGO_PW;
 //var url = 'mongodb://localhost:27017/birds';
 //var url = 'mongodb://CK:' + mongo_pw + '@localhost:27017/birds';
-var url = 'mongodb://chitrakakkar:' + mongo_pw + '@localhost:27017/birds?authSource=admin';
+var url = 'mongodb://CK:' + mongo_pw + '@localhost:27017/birds?authSource=admin';
 mongoose.connect(url);
 
 var app = express();
@@ -30,6 +30,7 @@ app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.engine('.hbs', hbs({
   extname:'.hbs',
   defaultLayout: 'layout',

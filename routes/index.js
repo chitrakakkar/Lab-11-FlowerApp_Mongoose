@@ -71,7 +71,7 @@ router.post('/', function(req, res, next){
         return res.redirect('/')
     })
 });
-
+// Post to home-page-handle form-submit*/
 router.post('/addDate', function (req,res,next)
 {
     console.log("I am the body", req.body);
@@ -103,7 +103,7 @@ router.post('/addDate', function (req,res,next)
             return 0;
         });
 
-
+        // saving the new bird in the database;
         bird.save(function(err){
             if (err) {
                 if (err.name == 'ValidationError') {
@@ -124,11 +124,12 @@ router.post('/addDate', function (req,res,next)
 
 
 });
-
+// Deletes the data from the database and from the web-page;
 router.post('/deleteBird', function (req, res,next)
 {
     var bird_to_delete_id = req.body._id;
     var bird_to_delete_name= req.body.name;
+    // Finds one with the ID using Bird schema and removes it;
     Bird.findOne({_id:bird_to_delete_id}, function(err, bird)
     {
         if(err)
@@ -147,7 +148,7 @@ router.post('/deleteBird', function (req, res,next)
         })
     });
 });
-
+// gets the information of the bird to be updated and sends it to updateBirds.hbs
 router.post('/updateBird', function (req, res,next)
 {
 
@@ -171,15 +172,13 @@ router.post('/updateBird', function (req, res,next)
 
     });
 });
-
+// updates bird info;name is read only in html since it's the unique key;
 router.post('/UpdateAndSave', function (req,res,next)
 {
     var query = { 'name' : req.body.name };
     var update ={
         name:req.body.name,
         description: req.body.description,
-        dateSeen:req.body.datesSeen,
-        threatened:req.body.threatened,
         averageEggsLaid:req.body.averageEggsLaid,
         nest:{location:req.body.nestLocation,
         materials:req.body.nestMaterials
